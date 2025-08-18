@@ -1,0 +1,207 @@
+/* ========== Google Fonts ========== */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* ========== リセット ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== ヘッダー ========== */
+header {
+    background: #222;
+    color: white;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+}
+
+header ul li {
+    margin-left: 25px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header ul li a:hover,
+header ul li a.active {
+    color: orange;
+}
+
+/* ========== hero & page-header 共通 ========== */
+.hero, .page-header {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero::before,
+.page-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 0;
+}
+
+.hero h2, .page-header h2,
+.hero p, .page-header p,
+.hero .btn, .page-header .btn {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== ボタン ========== */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: orange;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 30px;
+}
+
+.btn:hover {
+    background: darkorange;
+    transform: translateY(-2px);
+}
+
+/* ========== セクション ========== */
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+section h2 {
+    margin-bottom: 25px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2em;
+}
+
+/* ========== カード / 商品一覧 ========== */
+.cards, .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.card, .product-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 高さを揃える */
+}
+
+.card:hover, .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* === 商品画像の統一 === */
+.card img, .product-card img {
+    width: 100%;
+    height: 250px;         /* ← 高さを固定 */
+    object-fit: cover;     /* 縦横比を保ちながら枠にフィット */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* タグ */
+.product-card .tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 8px;
+    background: orange;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 5px;
+}
+
+
+/* ========== フォーム ========== */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+form button:hover {
+    background: darkorange;
+    transform: translateY(-2px);
+}
+
+/* ========== フッター ========== */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 50px;
+}
