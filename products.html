@@ -24,37 +24,54 @@
             <p>人気タイトルを幅広く取り揃え</p>
         </section>
 
-        <section class="product-list">
-            <div class="product-card">
+        <!-- ▼ スライダー -->
+        <section class="product-section">
+            <h2>商品一覧</h2>
+
+            <div class="product-slider" id="product-slider" aria-roledescription="carousel">
+            <button class="nav-btn prev" aria-label="前へ" type="button">‹</button>
+
+            <div class="stage" aria-live="polite">
+                <article class="product-slide active">
                 <img src="images/pokemon.jpg" alt="ポケモンカード">
                 <h3>ポケモンカード</h3>
                 <p>最新パックから旧弾まで幅広く取り揃えています。</p>
-            </div>
-            <div class="product-card">
+                </article>
+
+                <article class="product-slide">
                 <img src="images/yugio.jpg" alt="遊戯王カード">
                 <h3>遊戯王カード</h3>
                 <p>構築済みデッキやレアカードも多数。</p>
-            </div>
-            <div class="product-card">
-                <img src="images/magic.webp" alt="MTGカード">
+                </article>
+
+                <article class="product-slide">
+                <img src="images/magic.webp" alt="マジック・ザ・ギャザリング">
                 <h3>マジック・ザ・ギャザリング</h3>
                 <p>国内外の人気カードを入荷。</p>
-            </div>
-            <div class="product-card">
+                </article>
+
+                <article class="product-slide">
                 <img src="images/dhuema.webp" alt="デュエル・マスターズ">
                 <h3>デュエル・マスターズ</h3>
                 <p>対戦イベントも随時開催中。</p>
+                </article>
+            </div>
+
+            <button class="nav-btn next" aria-label="次へ" type="button">›</button>
             </div>
         </section>
+        <!-- ▲ スライダー -->
 
         <footer>
             <p>
-                © 2025 CardQuest - 架空県架空市トレカ町1-2-3<br>
-                Photos:  
-                <a href="https://unsplash.com/@nitishm" target="_blank">Nitish Meena</a>,  
-                <a href="https://unsplash.com/@hugh" target="_blank">Hugh Han</a>,  
-                other images via O-DAN (Unsplash / Pixabay)
+            © 2025 CardQuest - 架空県架空市トレカ町1-2-3<br>
+            Photos:  
+            <a href="https://unsplash.com/@nitishm" target="_blank">Nitish Meena</a>,  
+            <a href="https://unsplash.com/@hugh" target="_blank">Hugh Han</a>,  
+            other images via O-DAN (Unsplash / Pixabay)
             </p>
         </footer>
+
+        <script src="script.js"></script>
     </body>
 </html>

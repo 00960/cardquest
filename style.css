@@ -205,3 +205,159 @@ footer {
     padding: 25px 20px;
     margin-top: 50px;
 }
+
+/* ========== 商品スライダー ========== */
+.products-slider {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.product {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* 矢印ボタン */
+.arrow {
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5em;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.arrow:hover {
+    background: darkorange;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .product {
+        width: 90%;
+    }
+}
+
+.product-card {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.product-card.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ======= Products Slider ======= */
+.product-section { padding: 80px 20px; text-align: center; }
+
+.product-slider {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 56px; /* 矢印分の余白 */
+}
+
+.product-slider .stage {
+  position: relative;
+  min-height: 520px;           /* スライドの高さを確保（崩れ防止） */
+}
+
+.product-slide {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .6s ease, transform .6s ease;
+  pointer-events: none;        /* 非表示中はクリック無効化 */
+}
+
+.product-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.product-slide img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  background: #f0f0f0;   /* ← 白じゃなく薄グレー */
+  border-radius: 10px;
+  padding: 10px;         /* ← 額縁風 */
+}
+
+.product-slide h3 { font-size: 1.4rem; margin-top: 4px; }
+.product-slide p  { color: #555; }
+
+/* 矢印ボタン */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .25s ease, transform .1s ease;
+  z-index: 2;
+}
+.nav-btn:hover { background: rgba(0,0,0,.75); }
+.nav-btn:active { transform: translateY(-50%) scale(0.96); }
+.nav-btn.prev { left: 6px; }
+.nav-btn.next { right: 6px; }
+
+/* レスポンシブ */
+@media (max-width: 640px) {
+  .product-slider { padding: 0 44px; }
+  .product-slider .stage { min-height: 460px; }
+  .product-slide img { max-height: 260px; }
+  .nav-btn { width: 38px; height: 38px; font-size: 20px; }
+}
+
+/* 動きを控えたい利用者に配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .product-slide { transition: none; }
+}
