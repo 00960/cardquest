@@ -1,48 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
-      const slider = document.getElementById('product-slider');
-      const slides = Array.from(document.querySelectorAll('.product-slide'));
-      const prev = document.querySelector('.nav-btn.prev');
-      const next = document.querySelector('.nav-btn.next');
 
-      let index = 0;
-      let timerId = null;
-      const INTERVAL = 3000; // 3秒
+  // ===== 商品スライダー（取扱商品ページのみ） =====
+  const slider = document.getElementById('product-slider');
+  if (slider) {
+    const slides = Array.from(slider.querySelectorAll('.product-slide'));
+    const prev = slider.querySelector('.nav-btn.prev');
+    const next = slider.querySelector('.nav-btn.next');
+    let index = 0;
+    let timerId = null;
+    const INTERVAL = 3000; // 3秒
 
-      function show(i) {
-        slides.forEach((s, n) => s.classList.toggle('active', n === i));
-        index = i;
-      }
+    function show(i) {
+      slides.forEach((s, n) => s.classList.toggle('active', n === i));
+      index = i;
+    }
 
-      function move(delta) {
-        const i = (index + delta + slides.length) % slides.length;
-        show(i);
-      }
+    function move(delta) {
+      const i = (index + delta + slides.length) % slides.length;
+      show(i);
+    }
 
-      function start() {
-        stop(); // 多重起動防止
-        timerId = setInterval(() => move(1), INTERVAL);
-      }
+    function start() { stop(); timerId = setInterval(() => move(1), INTERVAL); }
+    function stop() { if (timerId) { clearInterval(timerId); timerId = null; } }
 
-      function stop() {
-        if (timerId) {
-          clearInterval(timerId);
-          timerId = null;
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+    show(0);
+    start();
+  }
+
+  // ===== ハンバーガーメニュー（全ページ共通） =====
+  const navList = document.querySelector('nav ul');
+  if (navList) {
+
+    // 二重生成防止
+    if (!document.querySelector('.nav-toggle')) {
+      const toggleBtn = document.createElement('button');
+      toggleBtn.textContent = '☰';
+      toggleBtn.classList.add('nav-toggle');
+      toggleBtn.style.fontSize = '24px';
+      toggleBtn.style.background = 'none';
+      toggleBtn.style.border = 'none';
+      toggleBtn.style.color = 'white';
+      toggleBtn.style.cursor = 'pointer';
+      navList.parentNode.insertBefore(toggleBtn, navList);
+
+      // ボタンクリックでメニュー開閉
+      toggleBtn.addEventListener('click', () => navList.classList.toggle('open'));
+
+      // 初期表示 & リサイズ対応
+      function checkWidth() {
+        if (window.innerWidth > 768) {
+          navList.classList.remove('open');
+          toggleBtn.style.display = 'none';
+        } else {
+          toggleBtn.style.display = 'inline-block';
         }
       }
 
-      prev.addEventListener('click', () => move(-1));
-      next.addEventListener('click', () => move(1));
+      checkWidth();
+      window.addEventListener('resize', checkWidth);
+    }
 
-      // ホバーで一時停止／離れたら再開
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
+  }
 
-      // タブが非表示の間は停止（省電力 & 安定）
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stop(); else start();
-      });
-
-      // 初期表示 & 自動再生
-      show(0);
-      start();
-    });
+});
